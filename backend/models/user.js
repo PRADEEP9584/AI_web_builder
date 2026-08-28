@@ -1,5 +1,7 @@
 import mongoose from "mongoose";
 
+const STARTING_CREDITS=20;
+
 const userSchema = new mongoose.Schema({
     name:{
         type: String,
@@ -14,5 +16,14 @@ const userSchema = new mongoose.Schema({
         lowercase: true,
         trim: true,
         index: true
+    },
+    passwordHash:{
+        type: String,
+        required: true
+    },
+    credits: {
+        type: Number,
+        default: STARTING_CREDITS,
+        min: 0
     }
 })
