@@ -25,5 +25,15 @@ const userSchema = new mongoose.Schema({
         type: Number,
         default: STARTING_CREDITS,
         min: 0
+    },
+    emailVerified: {
+        type: Boolean,
+        default: true
     }
-})
+}, {
+    timestamps: true
+});
+
+
+// to return a safe user obj (no password) to sent to frontend.
+// 18:28
