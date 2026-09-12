@@ -1,7 +1,6 @@
 import React from 'react';
 import {navbarStyles as s} from "../assets/dummyStyles";
-import {Logo} from "../assets/ui"; 
-
+import {Logo} from "../assets/ui";
 
 const Navbar=()=>{
     return(
