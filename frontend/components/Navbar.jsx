@@ -7,6 +7,16 @@ const Navbar=()=>{
         <nav className={s.root}>
             <div className={s.container}>
                 <Logo/>
+
+
+
+                <div    className={s.links}>
+                    <a href="/">Home</a>
+                    <a href="/about">About</a>
+                    <a href="/contact">Contact</a>
+                </div>
+
+
                 
             </div>
         </nav>
