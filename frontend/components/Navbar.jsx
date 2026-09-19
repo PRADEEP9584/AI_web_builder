@@ -10,11 +10,7 @@ const Navbar=()=>{
 
 
 
-                <div    className={s.links}>
-                    <a href="/">Home</a>
-                    <a href="/about">About</a>
-                    <a href="/contact">Contact</a>
-                </div>
+                
 
 
                 
