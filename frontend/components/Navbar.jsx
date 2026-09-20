@@ -8,12 +8,8 @@ const Navbar=()=>{
             <div className={s.container}>
                 <Logo/>
 
+<div></div>
 
-
-                
-
-
-                
             </div>
         </nav>
     )
