@@ -1,8 +1,12 @@
 import {User} from "../models/user.js"
 import {Project} from "../models/project.js";
+import {generateOtp} from "../utils/services.js"
+
 
 //issue an otp and send it via email
-
+async function issueAndSend(email,name,status,res,code=201){
+    const otp= generateOtp();
+}
 
 //to register a user and send otp
 export async function register(req,res,next){
