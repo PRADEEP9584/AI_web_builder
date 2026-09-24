@@ -358,6 +358,7 @@ function parseBrevoError(status, body) {
 }
 
 // Send a one-time code by email via Brevo; falls back to console logging on failure.
+//it will send an otp to the user's email valid of 10 mins
 export async function sendOtpEmail({ to, name, code, purpose }) {
   // Subject + intro varies by purpose so users know what the email is for
   // (signup verification, login OTP, password recovery, etc.).
