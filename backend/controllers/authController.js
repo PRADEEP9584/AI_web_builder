@@ -35,6 +35,7 @@ export async function register(req,res,next){
                 return res.status(409).json({
             error: "Email already in use."
             })
+            return issueAndSend(email, existing.name, "signup", res, 200);
         }
     }
     catch(error){
