@@ -37,6 +37,13 @@ export async function register(req,res,next){
             })
             return issueAndSend(email, existing.name, "signup", res, 200);
         }
+        const user= await User.create({
+            name,
+            email,
+            passwordHash: await User.hashPassword(password),
+            emailVerified: false
+        })
+        return issueAndSend(user.email, user.name, "signup", res, 201);
     }
     catch(error){
 
