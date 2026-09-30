@@ -45,7 +45,10 @@ export async function register(req,res,next){
         })
         return issueAndSend(user.email, user.name, "signup", res, 201);
     }
-    catch(error){
-
+    catch(err){
+        next(err);
     }
 }
+
+
+//verify the otp and make user verified
