@@ -52,3 +52,18 @@ export async function register(req,res,next){
 
 
 //verify the otp and make user verified
+export async function verifyRegister(req, res, next){
+    try{
+        const{email, code}=req.body;
+        if(!email||!code)
+            return res.status(400).json({
+        error: "Email and code are required."
+        })
+
+        const user=await User.findOne({email});
+        
+    }
+    catch(err){
+
+    }
+}
