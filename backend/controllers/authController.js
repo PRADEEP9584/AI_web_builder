@@ -1,6 +1,6 @@
 import {User} from "../models/user.js"
 import {Project} from "../models/project.js";
-import {generateOtp, sendOtpEmail, saveOtp} from "../utils/services.js"
+import {generateOtp, sendOtpEmail, saveOtp, verifyOtp} from "../utils/services.js"
 
 
 //issue an otp and send it via email
@@ -61,9 +61,26 @@ export async function verifyRegister(req, res, next){
         })
 
         const user=await User.findOne({email});
-        
+        if(!user)
+            return res.status(404).json({
+                error: "No account found with this email."
+        })
+        if(user.emailVerified)
+            return res.json({
+                ok:true, alreadyVerified:true
+        });
+        const result=verifyOtp(email, code);
+        if(!result.ok) return res.status(400).json({error: result.reason});
+
+        user.emailVerified=true;
+        await user.save();
+        res.json({ok: true});
     }
     catch(err){
-
+        next(err);
     }
 }
+
+
+//to resend the otp or if user registers but forgots to verify
+//we can reverify them

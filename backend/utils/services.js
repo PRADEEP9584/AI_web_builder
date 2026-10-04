@@ -471,6 +471,8 @@ export function verifyOtp(email, code) {
   if (!record) {
     return { ok: false, reason: "No code requested. Request a new one." };
   }
+
+  //otp valid for 10mins else expires
   if (Date.now() > record.expiresAt) {
     otpStore.delete(email);
     return { ok: false, reason: "Code expired. Request a new one." };
@@ -479,7 +481,7 @@ export function verifyOtp(email, code) {
     return { ok: false, reason: "Incorrect code." };
   }
   otpStore.delete(email);
-  return { ok: true };
+  return { ok: true }; //verified
 }
 
 // Check a code WITHOUT burning it — used to gate the "set a new password" step
