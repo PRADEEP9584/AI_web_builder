@@ -90,6 +90,10 @@ export async function resendRegister(req, res, next){
       if(!email) return res.status(400).json({error:"Email is required."});
       
       const user=await User.findOne({email});
+      if(!user)
+        return res.status(404).json({error:"No account found with this email."});
+      if(user.emailVerified)
+        return res.status(400).json({error:"This email is already verified - just sign in."});
     }
     catch(err){
 
