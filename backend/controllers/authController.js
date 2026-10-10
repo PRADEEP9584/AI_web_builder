@@ -1,6 +1,6 @@
 import {User} from "../models/user.js"
 import {Project} from "../models/project.js";
-import {generateOtp, sendOtpEmail, saveOtp, verifyOtp, resendRegister} from "../utils/services.js"
+import {generateOtp, sendOtpEmail, saveOtp, verifyOtp, resendRegister, issueAndSend} from "../utils/services.js"
 
 
 //issue an otp and send it via email
@@ -94,6 +94,8 @@ export async function resendRegister(req, res, next){
         return res.status(404).json({error:"No account found with this email."});
       if(user.emailVerified)
         return res.status(400).json({error:"This email is already verified - just sign in."});
+
+      return issueAndSend(user.email, user.name, "signup", res, 200);
     }
     catch(err){
 
