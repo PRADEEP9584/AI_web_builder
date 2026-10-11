@@ -106,9 +106,11 @@ export async function resendRegister(req, res, next){
 //to login
 export async function login(req, res, next){
     try{
-
+    const{email, password}=req.body;
+    if(!email || !password)
+        return res.status(400).json({error: "Email and Password are required."})
     }
     catch(err){
-        
+
     }
 }
