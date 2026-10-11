@@ -98,6 +98,17 @@ export async function resendRegister(req, res, next){
       return issueAndSend(user.email, user.name, "signup", res, 200);
     }
     catch(err){
+        next(err);
+    }
+}
 
+
+//to login
+export async function login(req, res, next){
+    try{
+
+    }
+    catch(err){
+        
     }
 }
