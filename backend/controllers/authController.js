@@ -109,6 +109,12 @@ export async function login(req, res, next){
     const{email, password}=req.body;
     if(!email || !password)
         return res.status(400).json({error: "Email and Password are required."})
+
+    const user=await User.findOne({email});
+      if(!user)
+        return res.status(401).json({error:"Invalid credentials."});
+
+      const ok= await user.verifyPassword(password);
     }
     catch(err){
 
