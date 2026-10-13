@@ -117,6 +117,6 @@ export async function login(req, res, next){
       const ok= await user.verifyPassword(password);
     }
     catch(err){
-
+        next(err);
     }
 }
