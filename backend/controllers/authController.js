@@ -115,6 +115,10 @@ export async function login(req, res, next){
         return res.status(401).json({error:"Invalid credentials."});
 
       const ok= await user.verifyPassword(password);
+
+      if(!user.emailVerified){
+        return res.status(403).json({error: "Please verify your email first. Check your inbox for the 6-digits code "})
+      }
     }
     catch(err){
         
