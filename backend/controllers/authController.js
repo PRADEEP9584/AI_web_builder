@@ -117,8 +117,12 @@ export async function login(req, res, next){
       const ok= await user.verifyPassword(password);
 
       if(!user.emailVerified){
-        return res.status(403).json({error: "Please verify your email first. Check your inbox for the 6-digits code "})
+        return res.status(403).json({error: "Please verify your email first. Check your inbox for the 6-digits code.", needsVerification:true,
+        email: user.email});
       }
+
+      //to generate the token
+      
     }
     catch(err){
         
