@@ -122,7 +122,9 @@ export async function login(req, res, next){
       }
 
       //to generate the token
+      const token=signToken(user._id.toString());
       
+
     }
     catch(err){
         
