@@ -127,6 +127,22 @@ export async function login(req, res, next){
 
     }
     catch(err){
-        
+        next(err);
+    }
+}
+
+//to get the logged-in user profile
+export function me(req, res){
+    res.json({user: req.user.toClient()});
+}
+
+//to get the contribution count
+//just like github graph
+export async function contributions(req, res, next){
+    try{
+
+    }
+    catch(err){
+        next(err);
     }
 }
