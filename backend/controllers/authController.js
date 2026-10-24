@@ -140,9 +140,37 @@ export function me(req, res){
 //just like github graph
 export async function contributions(req, res, next){
     try{
+    const oneYearAgo=new Date();
+    oneYearAgo.setUTCHours(0,0,0,0);
+    oneYearAgo.setUTCDate(oneYearAgo.getUTCDate()-364);
+    
+    const projects=await Project.find({
+        user: req.user._id,
+        "messages.createdAt":{$gte: oneYearAgo},
+    }).select("messages");
 
+    const counts={};
+    const key = (d) => new Date(d).toISOString().slice(0, 10);
+    for (const p of projects) {
+      for (const m of p.messages || []) {
+        if (m.role === "user" && m.createdAt && m.createdAt >= oneYearAgo) {
+          const k = key(m.createdAt);
+          counts[k] = (counts[k] || 0) + 1;
+        }
+      }
+    }
+
+    const days = Object.entries(counts)
+      .map(([date, count]) => ({ date, count }))
+      .sort((a, b) => a.date.localeCompare(b.date));
+
+    const total = days.reduce((s, d) => s + d.count, 0);
+    res.json({ days, total, from: key(oneYearAgo), to: key(new Date()) });
+ 
     }
     catch(err){
         next(err);
     }
 }
+
+//to update user profile
