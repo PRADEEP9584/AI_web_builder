@@ -174,3 +174,11 @@ export async function contributions(req, res, next){
 }
 
 //to update user profile
+export async function updateProfile(req,res,next){
+    try{
+
+    }
+    catch(error){
+        
+    }
+}
