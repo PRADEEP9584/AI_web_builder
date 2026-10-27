@@ -176,9 +176,18 @@ export async function contributions(req, res, next){
 //to update user profile
 export async function updateProfile(req,res,next){
     try{
+        const name=req.body.name!==undefined?String(req.body.name).trim():undefined;
+
+      if(name===undefined) return res.status(400).json({error:"Nothing to update."});
+      
+      if(name.length<2 || name.length>32) return res.status(400).json({error:"Name must be of 2-32 characters."});
+
+      req.user.name=name;
+    await req.user.save();
+    res.json({user:req.user.toClient()});
 
     }
-    catch(error){
-        
+    catch(err){
+        next(err);
     }
 }
