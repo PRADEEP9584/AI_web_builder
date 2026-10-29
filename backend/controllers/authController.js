@@ -191,3 +191,18 @@ export async function updateProfile(req,res,next){
         next(err);
     }
 }
+
+
+//to change the current password for logged-in user
+export async function changePassword(req, res,next){
+    try{
+        const{current, nextPw}=req.body;
+        if(!current || nextPw.length <6) return res.status(400).json({error: "New Password must be atleast 6 characters."});
+
+        const ok=await req.user.verifyPassword(current);
+        if(!ok) return res.status(400).json({error: "Current password is incorrect."});
+    }
+    catch(err){
+
+    }
+}
