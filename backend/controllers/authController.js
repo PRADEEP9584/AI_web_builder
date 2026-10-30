@@ -201,6 +201,8 @@ export async function changePassword(req, res,next){
 
         const ok=await req.user.verifyPassword(current);
         if(!ok) return res.status(400).json({error: "Current password is incorrect."});
+
+        req.user.passwordHash=await User.hashPassword(nextPw);
     }
     catch(err){
 
