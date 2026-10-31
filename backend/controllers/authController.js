@@ -203,6 +203,7 @@ export async function changePassword(req, res,next){
         if(!ok) return res.status(400).json({error: "Current password is incorrect."});
 
         req.user.passwordHash=await User.hashPassword(nextPw);
+        await req.user.save();
     }
     catch(err){
 
