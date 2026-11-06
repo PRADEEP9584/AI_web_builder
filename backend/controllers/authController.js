@@ -204,9 +204,9 @@ export async function changePassword(req, res,next){
 
         req.user.passwordHash=await User.hashPassword(nextPw);
         await req.user.save();
-        //res.json({ok:true});
+        res.json({ok:true});
     }
     catch(err){
-
+        next(err);
     }
 }
