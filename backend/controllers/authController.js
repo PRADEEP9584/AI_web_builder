@@ -207,6 +207,6 @@ export async function changePassword(req, res,next){
         res.json({ok:true});
     }
     catch(err){
-        next(err);
+        //next(err);
     }
 }
