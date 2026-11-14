@@ -210,3 +210,14 @@ export async function changePassword(req, res,next){
         next(err);
     }
 }
+
+
+//to remove the logged-in user's account
+export async function deleteAccount(req,res,next){
+    try{
+
+    }
+    catch(error){
+        
+    }
+}
