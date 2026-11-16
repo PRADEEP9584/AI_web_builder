@@ -217,7 +217,7 @@ export async function deleteAccount(req,res,next){
     try{
 
     }
-    catch(error){
-        
+    catch(err){
+        next(err);
     }
 }
